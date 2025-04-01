@@ -1,0 +1,29 @@
+<h2>Páginas</h2>
+<hr>
+
+<h3 class="mt-3">Reactive</h3>
+<ul class="list-group">
+  @for (item of reactiveMenuItem; track item.title) {
+  <li routerLinkActive="active" [routerLink]="item.route" class="list-group-item text-center">
+    {{item.title}}
+  </li>
+  }
+</ul>
+
+<h3 class="mt-3">Auth</h3>
+<ul class="list-group">
+  @for (auth of authMenuItem; track auth.title) {
+  <li routerLinkActive="active" [routerLink]="auth.route" class="list-group-item text-center">
+    {{auth.title}}
+  </li>
+  }
+</ul>
+
+<h3 class="mt-3">Country</h3>
+<ul class="list-group">
+  @for (country of countryMenuItem; track country.title) {
+  <li routerLinkActive="active" [routerLink]="country.route" class="list-group-item text-center">
+    {{country.title}}
+  </li>
+  }
+</ul>
