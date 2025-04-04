@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { reactiveRoutes } from '../../../reactive/reactive.routes';
 import { MenuItem } from '../../../interface/menu-item.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeThemeComponent } from "../change-theme/change-theme.component";
 
 const reactiveItems = reactiveRoutes[0].children ?? [];
 
 @Component({
   selector: 'app-side-menu',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ChangeThemeComponent],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.css',
 })

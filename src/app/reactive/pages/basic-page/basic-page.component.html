@@ -1,22 +1,25 @@
 <h2>Reactivos: Básicos</h2>
-<hr>
+<hr />
 
 <div class="row">
   <div class="col">
-
-    <form autocomplete="off" [formGroup]="myForm">
-
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
       <!-- Campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Producto</label>
         <div class="col-sm-9">
-
-          <input formControlName="name" type="text" class="form-control" placeholder="Nombre del producto">
-
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control"
+            placeholder="Nombre del producto"
+          />
+          @if ( formUtils.isValidField(myForm,'name') ) {
           <span class="form-text text-danger">
-            <!-- Debe de ser de 3 letras -->
-            error message
+            <!-- Es requerido -->
+            {{ formUtils.getFieldError(myForm, "name") }}
           </span>
+          }
         </div>
       </div>
 
@@ -24,10 +27,18 @@
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Precio</label>
         <div class="col-sm-9">
-          <input formControlName="price" type="number" class="form-control" placeholder="Precio del producto">
+          <input
+            formControlName="price"
+            type="number"
+            class="form-control"
+            placeholder="Precio del producto"
+          />
+          @if ( formUtils.isValidField(myForm,'price') ) {
           <span class="form-text text-danger">
-            El precio debe de ser 0 o mayor
+            <!-- Es requerido -->
+            {{ formUtils.getFieldError(myForm, "price") }}
           </span>
+          }
         </div>
       </div>
 
@@ -35,36 +46,39 @@
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Existencias</label>
         <div class="col-sm-9">
-          <input formControlName="inStorage" type="number" class="form-control" placeholder="Existencias del producto">
+          <input
+            formControlName="inStorage"
+            type="number"
+            class="form-control"
+            placeholder="Existencias del producto"
+          />
 
+          @if ( formUtils.isValidField(myForm,'price') ) {
           <span class="form-text text-danger">
-            Las existencias deben de ser 0 o mayor
+            <!-- Es requerido -->
+            {{ formUtils.getFieldError(myForm, "inStorage") }}
           </span>
+          }
         </div>
       </div>
 
-
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">
+          <button
+            [disabled]="myForm.invalid"
+            type="submit"
+            class="btn btn-primary float-end"
+          >
             Guardar
           </button>
         </div>
       </div>
-
-
-
     </form>
-
   </div>
 </div>
 
-
-
-
 <div class="row">
   <div class="col">
-
     <span>Valid</span>
     <pre>{{ myForm.valid | json }}</pre>
 
@@ -77,15 +91,15 @@
     <span>Value</span>
     <pre>{{ myForm.value | json }}</pre>
 
-    <span>Errores en name</span>
+    <span>Errores en el campo :name, price and insStorage</span>
     <pre>{{ myForm.controls["name"].errors | json }}</pre>
     <pre>{{ myForm.controls["price"].errors | json }}</pre>
     <pre>{{ myForm.controls["inStorage"].errors | json }}</pre>
 
     <span>Precio</span>
-    <pre>{{ myForm.controls['price'].value | json }}</pre>
+    <pre>{{ myForm.controls["price"].value | json }}</pre>
 
     <span>Producto</span>
-    <pre>{{ myForm.controls.name.value | json }}</pre>
+    <pre>{{ myForm.controls["name"].value | json }}</pre>
   </div>
 </div>
